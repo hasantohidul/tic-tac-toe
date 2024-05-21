@@ -6,6 +6,7 @@ export default function Game() {
     { squares: Array(9).fill(null), location: null },
   ]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [ascending, setAscending] = useState(true);
   const currentSquares = history[currentMove].squares;
 
   const handlePlay = (latestSquares, row, col) => {
@@ -43,6 +44,9 @@ export default function Game() {
       );
   });
 
+  const sortedMoves = !ascending ? moves.slice().reverse() : moves;
+
+
   return (
     <div>
       <Board
@@ -51,8 +55,12 @@ export default function Game() {
         currentMove={currentMove}
       />
       <div>
+        <br/>
+        <button onClick={() => ascending ? setAscending(false) : setAscending(true)}>
+          {ascending ? "Descend sorting" : "Ascend sorting"}
+        </button>
         <ol>{
-        moves}</ol>
+        sortedMoves}</ol>
       </div>
     </div>
   );
