@@ -1,0 +1,19 @@
+body {
+    margin: 10px;
+}
+
+.square {
+    float: left;
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+}
+
+.board-row {
+    display: table;
+}
+
+.highlight {
+    background-color: #333;
+    color: #cec;
+}

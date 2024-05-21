@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Board from "./components/Board";
 
-function App() {
+export default function Game() {
+  const [history, setHistory] = useState([
+    { squares: Array(9).fill(null), location: null },
+  ]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove].squares;
+
+  const handlePlay = (latestSquares, row, col) => {
+    const nextHistory = [
+      ...history.slice(0, currentMove + 1),
+      { squares: latestSquares, location: { row, col } },
+    ];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  };
+
+  const jumpTo = (nextMove) => {
+    setCurrentMove(nextMove);
+  };
+
+  const moves = history.map((step, move, history) => {
+
+    const firstButton = "Go, start the game";
+    if (move > 0 && move === history.length - 1)
+      return (
+        <li key={move}>
+          You are currently at move #{move}, row number {step.location.row} and column number{" "}
+          {step.location.col}
+        </li>
+      );
+    else
+      return (
+        <li key={move}>
+          <button onClick={() => jumpTo(move)}>
+            {move === 0
+              ? firstButton
+              : `Go to move #${move} row number ${step.location.row} column number ${step.location.col}`}
+          </button>
+        </li>
+      );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Board
+        squares={currentSquares}
+        onPlay={handlePlay}
+        currentMove={currentMove}
+      />
+      <div>
+        <ol>{
+        moves}</ol>
+      </div>
     </div>
   );
 }
-
-export default App;
