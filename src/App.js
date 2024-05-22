@@ -48,7 +48,7 @@ export default function Game() {
 
 
   return (
-    <div>
+    <div className="game">
       <Board
         squares={currentSquares}
         onPlay={handlePlay}

@@ -41,9 +41,9 @@ export default function Board({squares, currentMove, onPlay}) {
      }
 
      return (
-        <>
+        <div className="game-board">
         <div className="status">{status}</div>
         {rows}
-        </>
+        </div>
      )
 }
