@@ -41,7 +41,7 @@ export default function Board({squares, currentMove, onPlay}) {
      }
 
      return (
-        <div className="game-board">
+        <div className="game-board col-12 lg-col-6">
         <div className="status">{status}</div>
         {rows}
         </div>

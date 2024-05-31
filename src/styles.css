@@ -2,15 +2,22 @@ body {
     margin: 10px;
 }
 
+
+.game {
+    text-align: center;
+    padding: 20px;
+}
 .square {
-    float: left;
+    display: flex;
+    align-items: center;
     width: 34px;
     height: 34px;
     font-size: 24px;
 }
 
 .board-row {
-    display: table;
+    display: flex;
+    justify-content: center;
 }
 
 .highlight {
@@ -18,9 +25,4 @@ body {
     color: #cec;
 }
 
-@media only screen and (max-width: 695px) {
-    .game-board {
-        width: 300px;
-        margin: auto;
-    }
-}
+

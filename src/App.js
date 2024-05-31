@@ -34,8 +34,8 @@ export default function Game() {
       );
     else
       return (
-        <li key={move}>
-          <button onClick={() => jumpTo(move)}>
+        <li key={move} className="mb-2 mt-3 pl-0">
+          <button className="btn btn-primary w-100 p-1 fs-6" onClick={() => jumpTo(move)}>
             {move === 0
               ? firstButton
               : `Go to move #${move} row number ${step.location.row} column number ${step.location.col}`}
@@ -48,7 +48,11 @@ export default function Game() {
 
 
   return (
-    <div className="game">
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+        <div className="game">
+      <div className="row">
       <Board
         squares={currentSquares}
         onPlay={handlePlay}
@@ -56,12 +60,18 @@ export default function Game() {
       />
       <div>
         <br/>
-        <button onClick={() => ascending ? setAscending(false) : setAscending(true)}>
-          {ascending ? "Descend sorting" : "Ascend sorting"}
+        <button className="btn btn-secondary mt-3" onClick={() => ascending ? setAscending(false) : setAscending(true)}>
+          {ascending ? "Sort Descending" : "Sort Ascending"}
         </button>
-        <ol>{
+        <ol className="move-list">{
         sortedMoves}</ol>
       </div>
     </div>
+      </div>
+        </div>
+      </div>
+    </div>
+    
+      
   );
 }
